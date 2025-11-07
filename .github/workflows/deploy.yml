@@ -3,7 +3,7 @@ name: Deploy Portfolio to GitHub Pages
 on:
   push:
     branches:
-      - main  # or "master" — whichever your default branch is
+      - main  # Change if your default branch is "master"
 
 permissions:
   contents: read
@@ -18,27 +18,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: "npm"
+          cache: npm
 
-      - name: Install dependencies
+      - name: Clean install dependencies
         run: |
           rm -f package-lock.json
           npm install
 
-      - name: Build Vite app
+      - name: Build the site
         run: npm run build
 
-      - name: Upload production-ready build files
+      - name: Upload build output to Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist  # 👈 Vite outputs here by default
+          path: ./dist   # 👈 your Vite build output folder
 
   deploy:
     runs-on: ubuntu-latest
