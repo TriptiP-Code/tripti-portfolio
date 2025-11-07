@@ -29,17 +29,23 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload artifact for deployment
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4   # ✅ updated to v4
         with:
+          name: build-dist
           path: ./dist
 
   deploy:
-    needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url || '' }}
+    needs: build
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4  # ✅ updated to v4
+        with:
+          name: build-dist
+          path: ./dist
+
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4       # ✅ updated to v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
