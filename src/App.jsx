@@ -12,7 +12,7 @@ export default function App(){
       <div className="container">
         <nav className="flex items-center justify-between py-6">
           <div className="flex items-center gap-4">
-            <img src="public/photuuuuuuuuu.jpg" alt="Tripti" className="w-12 h-12 rounded-full object-cover ring-2 ring-slate-700"/>
+            <img src="src/assets/photuuuuuuuuu.jpg" alt="Tripti" className="w-12 h-12 rounded-full object-cover ring-2 ring-slate-700"/>
             <div>
               <div className="text-lg font-semibold">Tripti Pandey</div>
               <div className="text-sm text-slate-400">DevOps Engineer</div>
